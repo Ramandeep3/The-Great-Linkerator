@@ -4,14 +4,14 @@ const DB_NAME = "localhost:5432/linkerator";
 const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client(DB_URL);
 
-// database methods
-async function createLinks({ name, link, count, comment }) {
+// LINK database methods
+async function createLink({ name, link, count, comment, tags = [] }) {
   try {
     const {
       rows: [links],
     } = await client.query(
       `
-              INSERT INTO links(name, link, count, comment)
+              INSERT INTO link(name, link, count, comment)
               VALUES($1, $2, $3, $4)
               ON CONFLICT (name) DO NOTHING
               RETURNING *;
@@ -19,36 +19,35 @@ async function createLinks({ name, link, count, comment }) {
       [name, link, count, comment]
     );
 
-    return links;
+    const tagList = await createTags(tags);
+    return await addTagsToLink(links.id, tagList);
   } catch (err) {
-    console.error("Could not create links");
+    console.error("Could not create any links");
     throw err;
   }
 }
-// TODO
+
 async function getAllLinks() {
   try {
     const { rows: idList } = await client.query(`
           SELECT id 
-          FROM links;
+          FROM link;
   `);
-    const links = await Promise.all(
-      idList.map((link) => getLinksById(link.id))
-    );
+    const links = await Promise.all(idList.map((link) => getLinkById(link.id)));
     return links;
   } catch (error) {
     throw error;
   }
 }
 
-async function getLinksById(id) {
+async function getLinkById(id) {
   try {
     const {
       rows: [link],
     } = await client.query(
       `
         SELECT *
-        FROM links
+        FROM link
         WHERE id=$1;
   `,
       [id]
@@ -73,6 +72,8 @@ async function getLinksById(id) {
     throw error;
   }
 }
+
+// TAG database methods
 
 async function getAllTags() {
   try {
@@ -116,7 +117,7 @@ async function createTags(tagList) {
   }
 }
 
-//TODO
+//TODO do we even need?
 async function getTagbyId() {
   try {
   } catch (err) {
@@ -125,17 +126,29 @@ async function getTagbyId() {
   }
 }
 
-//TODO
-async function getLinkByTagName() {
+// LINK and TAG database methods
+
+async function getLinksByTagName(tagName) {
   try {
+    const { rows: tagIds } = await client.query(
+      `
+      SELECT link.id
+      FROM link
+      JOIN link_tags ON link.id=link_tags."linkId"
+      JOIN tags ON tags.id=link_tags."tagId"
+      WHERE tags.name=$1;
+    `,
+      [tagName]
+    );
+
+    return await Promise.all(tagIds.map((link) => getLinkById(link.id)));
   } catch (err) {
     console.error();
     throw err;
   }
 }
 
-//TODO
-async function createLinkTags(linkId, tagId) {
+async function createLinkTag(linkId, tagId) {
   try {
     await client.query(
       `
@@ -150,16 +163,15 @@ async function createLinkTags(linkId, tagId) {
   }
 }
 
-//TODO
 async function addTagsToLink(linkId, tagList) {
   try {
     const createTagPromises = tagList.map((tag) =>
-      createLinkTags(linkId, tag.id)
+      createLinkTag(linkId, tag.id)
     );
 
     await Promise.all(createTagPromises);
 
-    return await getLinksById(linkId);
+    return await getLinkById(linkId);
   } catch (err) {
     console.error();
     throw err;
@@ -169,14 +181,14 @@ async function addTagsToLink(linkId, tagList) {
 // export
 module.exports = {
   client,
-  createLinks,
+  createLink,
   getAllTags,
   getAllLinks,
-  getLinksById,
+  getLinkById,
   createTags,
   getTagbyId,
-  getLinkByTagName,
+  getLinksByTagName,
   addTagsToLink,
-  createLinkTags,
+  createLinkTag,
   // db methods
 };
