@@ -75,16 +75,6 @@ async function getLinkById(id) {
 
 // TAG database methods
 
-async function getAllTags() {
-  try {
-    const { rows } = await client.query(`SELECT * FROM tags;`);
-
-    return { rows };
-  } catch (error) {
-    throw error;
-  }
-}
-
 async function createTags(tagList) {
   if (tagList.length === 0) {
     return [];
