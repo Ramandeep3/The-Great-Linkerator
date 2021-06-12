@@ -10,4 +10,4 @@ const CreateLinkForm = () => {
   );
 };
 
-export CreateLinkForm
+export default CreateLinkForm;
