@@ -39,13 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ramandeep3/The-Great-Linkerator.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Ramandeep3/The-Great-Linkerator/issues"
-  },
-  "homepage": "https://github.com/Ramandeep3/The-Great-Linkerator#readme"
+  }
+ 
 }
