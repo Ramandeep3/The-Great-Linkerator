@@ -38,12 +38,13 @@ async function createTables() {
       name TEXT UNIQUE
     );
     CREATE TABLE link(
-      id SERIAL PRIMARY KEY,
-      name TEXT UNIQUE NOT NULL,
-      link TEXT NOT NULL,
-      count INTEGER,
-      comment VARCHAR(255) NOT NULL,
-      "dateshared" DATE default CURRENT_DATE
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL,
+        link VARCHAR(255) NOT NULL,
+        "createDate" DATE NOT NULL,
+        "clickNum" INTEGER,
+        comment VARCHAR(255) NOT NULL,
+        active boolean DEFAULT true
     );
     CREATE TABLE link_tags(
       "linkId" INTEGER REFERENCES link(id),
@@ -65,14 +66,16 @@ async function createInitialLinks() {
       {
         name: "Google",
         link: "https://www.google.com",
-        count: 22,
+        createDate: "2021/04/04",
+        clickNum: 22,
         comment: "A search engine.",
         tags: ["cat", "food", "world"],
       },
       {
         name: "Twitter",
         link: "https://www.twitter.com",
-        count: 34,
+        createDate: "2021/03/04",
+        clickNum: 12,
         comment:
           "A microblogging system that allows you to send and receive short posts.",
         tags: ["pepper", "cup", "cat"],
@@ -80,7 +83,8 @@ async function createInitialLinks() {
       {
         name: "Youtube",
         link: "Youtube.com",
-        count: 13,
+        createDate: "2021/02/04",
+        clickNum: 2,
         comment: "TV Movies and Streaming.",
         tags: ["saints", "tv", "food"],
       },

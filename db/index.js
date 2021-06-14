@@ -5,27 +5,55 @@ const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client(DB_URL);
 
 // LINK database methods
-async function createLink({ name, link, count, comment, tags = [] }) {
+// async function createLink({ name, link, count, comment, tags = [] }) {
+//   try {
+//     const {
+//       rows: [links],
+//     } = await client.query(
+//       `
+//               INSERT INTO link(name, link, count, comment)
+//               VALUES($1, $2, $3, $4)
+//               ON CONFLICT (name) DO NOTHING
+//               RETURNING *;
+//            `,
+//       [name, link, count, comment]
+//     );
+
+//     const tagList = await createTags(tags);
+//     return await addTagsToLink(links.id, tagList);
+//   } catch (err) {
+//     console.error("Could not create any links");
+//     throw err;
+//   }
+// }
+
+const createLink = async ({
+  name,
+  link,
+  createDate,
+  clickNum,
+  comment,
+  tags = [],
+}) => {
   try {
     const {
       rows: [links],
     } = await client.query(
       `
-              INSERT INTO link(name, link, count, comment)
-              VALUES($1, $2, $3, $4)
-              ON CONFLICT (name) DO NOTHING
-              RETURNING *;
-           `,
-      [name, link, count, comment]
+            INSERT INTO link(name, link, "createDate", "clickNum", comment)
+            VALUES($1, $2, $3, $4, $5)
+            ON CONFLICT (name) DO NOTHING
+            RETURNING *;
+         `,
+      [name, link, createDate, clickNum, comment]
     );
-
     const tagList = await createTags(tags);
     return await addTagsToLink(links.id, tagList);
   } catch (err) {
-    console.error("Could not create any links");
+    console.error("Could not create links in index.js [createLink()]");
     throw err;
   }
-}
+};
 
 async function getAllLinks() {
   try {

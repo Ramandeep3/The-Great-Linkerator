@@ -6,7 +6,6 @@ const {
   getAllLinks,
   getLinkById,
   createTags,
-  getTagbyId,
   getLinksByTagName,
   addTagsToLink,
   createLinkTag,
@@ -47,7 +46,7 @@ apiRouter.get("/tags/:tagName/links", async (req, res, next) => {
 });
 
 apiRouter.post("/links", async (req, res, next) => {
-  const { name, link, comment, tags = "" } = req.body;
+  const { name, link, createDate, comment, tags = "" } = req.body;
   const tagArr = tags.trim().split(/\s+/);
   const linkData = {};
 
@@ -58,12 +57,16 @@ apiRouter.post("/links", async (req, res, next) => {
   try {
     linkData.name = name;
     linkData.link = link;
+    linkData.createDate = createDate;
     linkData.comment = comment;
     if (!name) {
       res.send(next(console.error({ message: "Must include name" })));
     }
     if (!link) {
       res.send(next(console.error({ message: "Must include link" })));
+    }
+    if (!createDate) {
+      res.send(next(console.error({ message: "Must include date" })));
     }
     if (!comment) {
       res.send(next(console.error({ message: "Must include comment" })));
