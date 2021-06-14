@@ -47,7 +47,7 @@ apiRouter.get("/tags/:tagName/links", async (req, res, next) => {
 });
 
 apiRouter.post("/links", async (req, res, next) => {
-  const { name, link, createDate, comment, tags = "" } = req.body;
+  const { name, link, comment, tags = "" } = req.body;
   const tagArr = tags.trim().split(/\s+/);
   const linkData = {};
 
@@ -58,7 +58,6 @@ apiRouter.post("/links", async (req, res, next) => {
   try {
     linkData.name = name;
     linkData.link = link;
-    linkData.createDate = createDate;
     linkData.comment = comment;
     if (!name) {
       res.send(next(console.error({ message: "Must include name" })));

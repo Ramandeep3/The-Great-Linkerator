@@ -35,7 +35,7 @@ async function createTables() {
     await client.query(`
     CREATE TABLE tags(
       id SERIAL PRIMARY KEY,
-      name TEXT UNIQUE NOT NULL
+      name TEXT UNIQUE
     );
     CREATE TABLE link(
       id SERIAL PRIMARY KEY,

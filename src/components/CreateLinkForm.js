@@ -9,5 +9,4 @@ const CreateLinkForm = () => {
     </div>
   );
 };
-
 export default CreateLinkForm;
