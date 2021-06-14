@@ -27,18 +27,11 @@ export async function getLinks() {
   }
 }
 
-export async function createNewLinks(
-  name,
-  link,
-  createDate,
-  comment,
-  tags = []
-) {
+export async function createNewLinks(name, link, comment, tags = "") {
   try {
     const { data } = await axios.post("/api/links", {
       name: name,
       link: link,
-      createDate: createDate,
       comment: comment,
       tags: tags,
     });

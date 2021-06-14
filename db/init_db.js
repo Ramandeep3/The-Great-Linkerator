@@ -35,16 +35,15 @@ async function createTables() {
     await client.query(`
     CREATE TABLE tags(
       id SERIAL PRIMARY KEY,
-      name TEXT UNIQUE
+      name TEXT UNIQUE NOT NULL
     );
     CREATE TABLE link(
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL,
-        link VARCHAR(255) NOT NULL,
-        "createDate" DATE NOT NULL,
-        "clickNum" INTEGER,
-        comment VARCHAR(255) NOT NULL,
-        active boolean DEFAULT true
+      id SERIAL PRIMARY KEY,
+      name TEXT UNIQUE NOT NULL,
+      link TEXT NOT NULL,
+      count INTEGER,
+      comment VARCHAR(255) NOT NULL,
+      "dateshared" DATE default CURRENT_DATE
     );
     CREATE TABLE link_tags(
       "linkId" INTEGER REFERENCES link(id),
@@ -66,16 +65,14 @@ async function createInitialLinks() {
       {
         name: "Google",
         link: "https://www.google.com",
-        createDate: "2021/04/04",
-        clickNum: 22,
+        count: 22,
         comment: "A search engine.",
         tags: ["cat", "food", "world"],
       },
       {
         name: "Twitter",
         link: "https://www.twitter.com",
-        createDate: "2021/03/04",
-        clickNum: 12,
+        count: 34,
         comment:
           "A microblogging system that allows you to send and receive short posts.",
         tags: ["pepper", "cup", "cat"],
@@ -83,8 +80,7 @@ async function createInitialLinks() {
       {
         name: "Youtube",
         link: "Youtube.com",
-        createDate: "2021/02/04",
-        clickNum: 2,
+        count: 13,
         comment: "TV Movies and Streaming.",
         tags: ["saints", "tv", "food"],
       },

@@ -6,6 +6,7 @@ const {
   getAllLinks,
   getLinkById,
   createTags,
+  getTagbyId,
   getLinksByTagName,
   addTagsToLink,
   createLinkTag,
@@ -64,9 +65,6 @@ apiRouter.post("/links", async (req, res, next) => {
     }
     if (!link) {
       res.send(next(console.error({ message: "Must include link" })));
-    }
-    if (!createDate) {
-      res.send(next(console.error({ message: "Must include date" })));
     }
     if (!comment) {
       res.send(next(console.error({ message: "Must include comment" })));
