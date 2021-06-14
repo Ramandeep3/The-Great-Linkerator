@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Title.css";
 
-import { getSomething } from "../api";
+
 
 const Title = () => {
   return (
