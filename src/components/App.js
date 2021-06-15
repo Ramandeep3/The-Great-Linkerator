@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Title,SearchBar} from "../components";
 import {
   getSomething
 } from '../api';
@@ -19,8 +19,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
-      <h2>{ message }</h2>
+      <Title/>
+     <SearchBar/>
+   
+      
     </div>
   );
 }
