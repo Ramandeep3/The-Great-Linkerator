@@ -6,6 +6,7 @@ const {
   getLinkById,
   getAllTags,
   getLinksByTagName,
+  updateLink,
   // other db methods
 } = require("./index");
 
@@ -124,6 +125,12 @@ async function testDB() {
     console.log("Calling getLinksByTagName with #cat");
     const linksWithCat = await getLinksByTagName("cat");
     console.log("Result:", linksWithCat);
+
+    console.log("Calling updateLink on link[1], only updating tags");
+    const updateLinkTagsResult = await updateLink(links[1].id, {
+      tags: ["#youcandoanything", "#redfish", "#bluefish"],
+    });
+    console.log("Result:", updateLinkTagsResult);
 
     console.log("Finished database tests!");
   } catch (error) {
