@@ -27,7 +27,7 @@ export async function getLinks() {
   }
 }
 
-export async function createNewLinks(name, link, comment, tags = "") {
+export async function createNewLinks([name, link, comment, tags] = "") {
   try {
     const { data } = await axios.post("/api/links", {
       name: name,
