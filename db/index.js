@@ -1,4 +1,3 @@
-// Connect to DB
 const { Client } = require("pg");
 const DB_NAME = "localhost:5432/linkerator";
 const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
@@ -22,7 +21,7 @@ async function createLink({ name, link, count, comment, tags = [] }) {
     const tagList = await createTags(tags);
     return await addTagsToLink(links.id, tagList);
   } catch (err) {
-    console.error("Could not create any links");
+    console.error("Could not create any links", err);
     throw err;
   }
 }
@@ -35,8 +34,9 @@ async function getAllLinks() {
   `);
     const links = await Promise.all(idList.map((link) => getLinkById(link.id)));
     return links;
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("could not get all links", err);
+    throw err;
   }
 }
 
@@ -68,8 +68,9 @@ async function getLinkById(id) {
     );
     link.tags = tags;
     return link;
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("could not get links by id", err);
+    throw err;
   }
 }
 
@@ -80,8 +81,9 @@ async function getAllTags() {
     const { rows } = await client.query(`SELECT * FROM tags;`);
 
     return { rows };
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("could not get all tags", err);
+    throw err;
   }
 }
 
@@ -112,23 +114,20 @@ async function createTags(tagList) {
     );
     return rows;
   } catch (err) {
-    console.error();
+    console.error("could not create tags", err);
     throw err;
   }
 }
 
 async function updateLink(linkId, fields = {}) {
-  // read off the tags & remove that field
-  const { tags } = fields; // might be undefined
+  const { tags } = fields;
   delete fields.tags;
 
-  // build the set string
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
 
   try {
-    // update any fields that need to be updated
     if (setString.length > 0) {
       await client.query(
         `
@@ -165,8 +164,9 @@ async function updateLink(linkId, fields = {}) {
     await addTagsToLink(linkId, tagList);
 
     return await getLinkById(linkId);
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("could not update link", err);
+    throw err;
   }
 }
 
@@ -187,7 +187,7 @@ async function getLinksByTagName(tagName) {
 
     return await Promise.all(tagIds.map((link) => getLinkById(link.id)));
   } catch (err) {
-    console.error();
+    console.error("could not get links by tag name", err);
     throw err;
   }
 }
@@ -202,8 +202,9 @@ async function createLinkTag(linkId, tagId) {
     `,
       [linkId, tagId]
     );
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("could not create link-tag", err);
+    throw err;
   }
 }
 
@@ -217,7 +218,7 @@ async function addTagsToLink(linkId, tagList) {
 
     return await getLinkById(linkId);
   } catch (err) {
-    console.error();
+    console.error("could not add tag to link", err);
     throw err;
   }
 }
