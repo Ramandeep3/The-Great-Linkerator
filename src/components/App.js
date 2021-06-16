@@ -3,6 +3,7 @@ import { Title } from "../components";
 import { getSomething } from "../api";
 import CreateLinkForm from "./CreateLinkForm";
 import SearchBar from "./SearchBar";
+import NewLinkFeedback from "./CreateLinkFeedback";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <div className="App">
       <Title />
+      <NewLinkFeedback />
       <SearchBar />
       <CreateLinkForm />
 
