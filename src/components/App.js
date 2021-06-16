@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Title } from "../components";
 import { getSomething } from "../api";
 import CreateLinkForm from "./CreateLinkForm";
-import Button from "react-bootstrap/Button";
 
 const App = () => {
   const [message, setMessage] = useState("");
