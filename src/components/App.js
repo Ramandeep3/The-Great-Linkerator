@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Home, Title } from "../components";
-import { getSomething } from "../api";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom" ;
-import "./App.css";
+import { getLinks } from "../api";
+import CreateLinkForm from "./CreateLinkForm";
+import SearchBar from "./SearchBar";
+import CardLink from "./CardLink";
+import "./App.css"
 
 const App = () => {
-  const [message, setMessage] = useState("");
+  const [m, setMessage] = useState("");
   const [grabbedLinks, setGrabbedLinks] = useState([]);
+  const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    getLinks()
-      .then((link) => {
-        setMessage(response.message);
-      })
-      .catch((error) => {
-        setMessage(error.message);
-      });
-  });
+    setCardData(getLinks())
+  }, [setCardData]);
 
   return (
     <div className="App">
-      <Home />
-      {/* <Title /> */}
-
+      <Title />
+      <SearchBar />
+      <CreateLinkForm />
+      <div className="cardContainer">
+        <CardLink cardData={cardData}/>
+      </div>
       {/* <h1>Hello, World!</h1> */}
       {/* <h2>{message}</h2> */}
     </div>
   );
 };
-
 export default App;

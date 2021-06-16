@@ -1,4 +1,6 @@
 import axios from "axios";
+
+
 export async function getSomething() {
   try {
     const { data } = await axios.get();
@@ -7,14 +9,6 @@ export async function getSomething() {
     throw error;
   }
 }
-// export async function updateLinks(linkId, updatedLink) {
-//   try {
-//     const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
 
 export async function getTags() {
   try {
@@ -28,13 +22,13 @@ export async function getTags() {
 export async function getLinks() {
   try {
     const { data } = await axios.get("/api/links");
-    return data;
+    return data.links;
   } catch (error) {
     throw error;
   }
 }
 
-export async function createNewLinks(name, link, comment, tags = "") {
+export async function createNewLinks([name, link, comment, tags] = "") {
   try {
     const { data } = await axios.post("/api/links", {
       name: name,
@@ -48,11 +42,20 @@ export async function createNewLinks(name, link, comment, tags = "") {
   }
 }
 
-// export async function updateLinks(linkId, updatedLink) {
-//   try {
-//     const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export async function linksWithTags(tagName) {
+  try {
+    const { data } = await axios.get(`/api/tags/${tagName}/links`);
+    return data.links;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateLinks(linkId, updatedLink) {
+  try {
+    const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
