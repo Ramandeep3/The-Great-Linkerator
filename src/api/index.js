@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export async function getSomething() {
   try {
     const { data } = await axios.get();
@@ -7,14 +8,6 @@ export async function getSomething() {
     throw error;
   }
 }
-// export async function updateLinks(linkId, updatedLink) {
-//   try {
-//     const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
 
 export async function getTags() {
   try {
@@ -42,6 +35,8 @@ export async function createNewLinks([name, link, comment, tags] = "") {
       comment: comment,
       tags: tags,
     });
+
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
