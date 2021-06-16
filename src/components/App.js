@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Title, CreateLinkForm, SearchBar } from "../components";
-import { getSomething } from "../api";
+import { Home, Title } from "../components";
+import { getLinks } from "../api";
+import CreateLinkForm from "./CreateLinkForm";
+import SearchBar from "./SearchBar";
+import CardLink from "./CardLink";
+import "./App.css";
 
 const App = () => {
   const [m, setMessage] = useState("");
@@ -14,8 +18,14 @@ const App = () => {
   return (
     <div className="App">
       <Title />
-      <SearchBar />
-      <CreateLinkForm />
+      <div className="NavBar">
+        <SearchBar />
+        <CreateLinkForm />
+      </div>
+
+      <div className="cardContainer">
+        <CardLink cardData={cardData} />
+      </div>
       {/* <h1>Hello, World!</h1> */}
       {/* <h2>{message}</h2> */}
     </div>
