@@ -1,0 +1,9 @@
+.App {
+   padding: 10px;
+}
+.cardContainer {
+   display: flex;
+   flex-flow: wrap;
+   /* justify-content: space-around; */
+   flex-grow: 2;
+}
