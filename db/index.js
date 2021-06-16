@@ -1,6 +1,7 @@
 const { Client } = require("pg");
 const DB_NAME = "localhost:5432/linkerator";
-const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
+// const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
+const DB_URL = `postgres://emmanuel:zxeman21@localhost:5432/linkerator` || `postgres://${DB_NAME}`;
 const client = new Client(DB_URL);
 
 // LINK database methods
@@ -10,11 +11,11 @@ async function createLink({ name, link, count, comment, tags = [] }) {
       rows: [links],
     } = await client.query(
       `
-              INSERT INTO link(name, link, count, comment)
-              VALUES($1, $2, $3, $4)
-              ON CONFLICT (name) DO NOTHING
-              RETURNING *;
-           `,
+        INSERT INTO link(name, link, count, comment)
+        VALUES($1, $2, $3, $4)
+        ON CONFLICT (name) DO NOTHING
+        RETURNING *;
+      `,
       [name, link, count, comment]
     );
 
@@ -29,9 +30,9 @@ async function createLink({ name, link, count, comment, tags = [] }) {
 async function getAllLinks() {
   try {
     const { rows: idList } = await client.query(`
-          SELECT id 
-          FROM link;
-  `);
+      SELECT id 
+      FROM link;
+    `);
     const links = await Promise.all(idList.map((link) => getLinkById(link.id)));
     return links;
   } catch (err) {
@@ -49,7 +50,7 @@ async function getLinkById(id) {
         SELECT *
         FROM link
         WHERE id=$1;
-  `,
+      `,
       [id]
     );
     if (!link) {
