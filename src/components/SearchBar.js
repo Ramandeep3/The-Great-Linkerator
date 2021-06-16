@@ -4,10 +4,10 @@ import { useState } from "react";
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div className="SeachBar">
+    <div className="SearchBar">
       <TextField
         id="Search-Bar"
-        label="Serch for links"
+        label="Search for links"
         value={searchTerm}
         onChange={(event) => {
           setSearchTerm(event.target.value);
