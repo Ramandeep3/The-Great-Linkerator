@@ -1,21 +1,16 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-import { Title,SearchBar} from "../components";
-import {
-  getSomething
-} from '../api';
-=======
 import React, { useState, useEffect } from "react";
-import { Title } from "../components";
+import { Home, Title } from "../components";
 import { getSomething } from "../api";
->>>>>>> upstream/master
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom" ;
+import "./App.css";
 
 const App = () => {
   const [message, setMessage] = useState("");
+  const [grabbedLinks, setGrabbedLinks] = useState([]);
 
   useEffect(() => {
-    getSomething()
-      .then((response) => {
+    getLinks()
+      .then((link) => {
         setMessage(response.message);
       })
       .catch((error) => {
@@ -25,16 +20,11 @@ const App = () => {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Title/>
-     <SearchBar/>
-   
-      
-=======
-      <Title />
+      <Home />
+      {/* <Title /> */}
+
       {/* <h1>Hello, World!</h1> */}
       {/* <h2>{message}</h2> */}
->>>>>>> upstream/master
     </div>
   );
 };
