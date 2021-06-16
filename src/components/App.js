@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Home, Title } from "../components";
+import { Title, CreateLinkForm, SearchBar } from "../components";
+import { getSomething } from "../api";
 import { getLinks } from "../api";
-import CreateLinkForm from "./CreateLinkForm";
-import SearchBar from "./SearchBar";
-import CardLink from "./CardLink";
-import "./App.css";
 
 const App = () => {
-  const [m, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [grabbedLinks, setGrabbedLinks] = useState([]);
   const [cardData, setCardData] = useState([]);
 
