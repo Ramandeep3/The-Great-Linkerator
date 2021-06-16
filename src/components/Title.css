@@ -1,6 +1,11 @@
-.Container {
-  height: 10%;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+.TitleText {
   display: flex;
   align-items: center;
   justify-content:center;
+  font-family: 'Kaushan Script', cursive;
+  font-size: xx-large;
+  letter-spacing: 0.2rem;
 }

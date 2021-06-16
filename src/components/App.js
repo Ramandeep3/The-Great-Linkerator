@@ -18,8 +18,11 @@ const App = () => {
   return (
     <div className="App">
       <Title />
-      <SearchBar />
-      <CreateLinkForm />
+      <div className="NavBar"> 
+        <SearchBar />
+        <CreateLinkForm />
+      </div>
+
       <div className="cardContainer">
         <CardLink cardData={cardData}/>
       </div>
