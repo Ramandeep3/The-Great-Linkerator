@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Alert from "react-bootstrap/Alert";
 import { createNewLinks } from "../api";
@@ -27,15 +27,15 @@ const LinkFailed = () => {
   );
 };
 
-// const NewLinkFeedback = () => {
-//   const LinkFunction = createNewLinks().value;
-//   const LinkData = LinkFunction.data;
-//   console.log(LinkFunction, LinkData, LinkData.message, "HELLO!!");
-//   if (LinkData.message === "Link successfully created!") {
-//     return <LinkCreated />;
-//   } else {
-//     return <LinkFailed />;
-//   }
-// };
+const NewLinkFeedback = () => {
+  const LinkFunction = createNewLinks().value;
+  const LinkData = LinkFunction.data;
+  console.log(LinkFunction, LinkData, LinkData.message, "HELLO!!");
+  if (LinkData.message === "Link successfully created!") {
+    return <LinkCreated />;
+  } else {
+    return <LinkFailed />;
+  }
+};
 
 export default NewLinkFeedback;
