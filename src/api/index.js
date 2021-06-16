@@ -43,11 +43,20 @@ export async function createNewLinks([name, link, comment, tags] = "") {
   }
 }
 
-// export async function updateLinks(linkId, updatedLink) {
-//   try {
-//     const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export async function linksWithTags(tagName) {
+  try {
+    const { data } = await axios.get(`/api/tags/${tagName}/links`);
+    return data.links;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateLinks(linkId, updatedLink) {
+  try {
+    const { data } = await axios.patch(`/api/links/${linkId.id}`, updatedLink);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
