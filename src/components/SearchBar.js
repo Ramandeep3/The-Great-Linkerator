@@ -23,10 +23,19 @@ const SearchBar = ({ links, setLinks, reset }) => {
     const keyword = event.target.value;
     setSearchTerm(keyword);
   };
+
   const handleReset = () => {
-    console.log(originalLinks);
     reset();
   };
+
+  const handleSort = () => {
+    let linkCount = [...links].sort(function (a, b) {
+      return parseInt(b.count) - parseInt(a.count);
+    });
+
+    setLinks(linkCount);
+  };
+
   return (
     <div className="searchbar">
       <Form inline>
@@ -42,6 +51,9 @@ const SearchBar = ({ links, setLinks, reset }) => {
         </Button>
         <Button className="reset-button" onClick={handleReset}>
           Reset
+        </Button>
+        <Button className="reset-button" onClick={handleSort}>
+          Popular Links
         </Button>
       </Form>
     </div>

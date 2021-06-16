@@ -79,7 +79,7 @@ async function createInitialLinks() {
       },
       {
         name: "Youtube",
-        link: "Youtube.com",
+        link: "https://www.youtube.com",
         count: 13,
         comment: "TV Movies and Streaming.",
         tags: ["saints", "tv", "food"],
