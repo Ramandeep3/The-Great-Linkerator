@@ -14,7 +14,10 @@
 .CardLink h1 {
    text-align: center;
 }
-
+#card-title-img {
+   
+   width: 70px;
+}
 .infoSection > p {
    font-weight: 800;
 }

@@ -3,7 +3,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getLinks } from "../api";
 import "./CardLink.css"
-import img from "../../src/assests/grid-globe-link.png"
+import img from "../../src/assests/grid-globe-link.png";
+
+
 const CardLink = () => {
   const [links, setLinks]=useState([])
   async function getLinks() {
@@ -36,7 +38,6 @@ const CardLink = () => {
         </div> 
       )
     })
-  
   );
 };
 
