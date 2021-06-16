@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Button } from "@material-ui/core";
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "./SearchBar.css";
 
 const SearchBar = ({ links, setLinks, reset }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,14 +29,21 @@ const SearchBar = ({ links, setLinks, reset }) => {
   };
   return (
     <div className="searchbar">
-      <TextField
-        id="Search-Bar"
-        label="Search for links"
-        value={searchTerm}
-        onChange={handleOnChange}
-      />
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={handleReset}>Reset</button>
+      <Form inline>
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={searchTerm}
+          onChange={handleOnChange}
+        />
+        <Button className="search-button" onClick={handleSearch}>
+          Search
+        </Button>
+        <Button className="reset-button" onClick={handleReset}>
+          Reset
+        </Button>
+      </Form>
     </div>
   );
 };

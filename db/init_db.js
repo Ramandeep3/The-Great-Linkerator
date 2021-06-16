@@ -128,7 +128,7 @@ async function testDB() {
 
     console.log("Calling updateLink on link[1], only updating tags");
     const updateLinkTagsResult = await updateLink(links[1].id, {
-      tags: ["youcandoanything", "redfish", "bluefish"],
+      tags: ["greenfish", "redfish", "bluefish"],
     });
     console.log("Result:", updateLinkTagsResult);
 
