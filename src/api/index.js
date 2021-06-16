@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export async function getSomething() {
   try {
     const { data } = await axios.get();
@@ -21,7 +22,7 @@ export async function getTags() {
 export async function getLinks() {
   try {
     const { data } = await axios.get("/api/links");
-    return data;
+    return data.links;
   } catch (error) {
     throw error;
   }

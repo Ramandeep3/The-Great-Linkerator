@@ -1,6 +1,8 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
+import "./SearchBar.css";
+
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
