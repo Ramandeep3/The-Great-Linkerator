@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Title, CreateLinkForm, SearchBar } from "../components";
-import { getSomething } from "../api";
+import { Home, Title } from "../components";
+import axios from "axios";
 import { getLinks } from "../api";
+import CreateLinkForm from "./CreateLinkForm";
+import SearchBar from "./SearchBar";
+import CardLink from "./CardLink";
+import "./App.css";
 
 const App = () => {
   const [message, setMessage] = useState("");
-  const [grabbedLinks, setGrabbedLinks] = useState([]);
   const [cardData, setCardData] = useState([]);
-
+  const [links, setLinks] = useState([]);
+  const retrieveLinks = () => {
+    getLinks()
+      .then((link) => {
+        setLinks(link);
+      })
+      .catch((error) => {
+        // something something errors
+      });
+  };
   useEffect(() => {
-    setCardData(getLinks());
-  }, [setCardData]);
+    retrieveLinks();
+  }, []);
+
+  // useEffect(() => {
+  //   setCardData(getLinks());
+  // }, [setCardData]);
 
   return (
     <div className="App">
       <Title />
       <div className="NavBar">
-        <SearchBar />
+        <SearchBar links={links} setLinks={setLinks} reset={retrieveLinks} />
         <CreateLinkForm />
       </div>
 
       <div className="cardContainer">
-        <CardLink cardData={cardData} />
+        <CardLink links={links} setLinks={setLinks} />
       </div>
       {/* <h1>Hello, World!</h1> */}
       {/* <h2>{message}</h2> */}
