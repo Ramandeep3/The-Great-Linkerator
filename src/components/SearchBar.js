@@ -1,15 +1,13 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
-import "./SearchBar.css";
-
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div className="SearchBar">
+    <div className="SeachBar">
       <TextField
         id="Search-Bar"
-        label="Search for links"
+        label="Serch for links"
         value={searchTerm}
         onChange={(event) => {
           setSearchTerm(event.target.value);
