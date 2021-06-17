@@ -1,4 +1,13 @@
 #Search-Bar {
-   width: 45vw;
-   margin-left: 10px;
+  width: 45vw;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.search-button {
+  margin: 10px;
+}
+
+.reset-button {
+  margin: 10px;
 }

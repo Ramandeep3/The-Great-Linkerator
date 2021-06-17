@@ -9,6 +9,8 @@ const client = new Client({
       ? { rejectUnauthorized: false }
       : undefined,
 });
+// const client = new Client(DB_URL);
+
 // LINK database methods
 async function createLink({ name, link, count, comment, tags = [] }) {
   try {
@@ -79,6 +81,31 @@ async function getLinkById(id) {
     throw err;
   }
 }
+
+// async function deleteLink(linkId) {
+//   try {
+//     await client.query(
+//       `
+//     DELETE FROM link_tags
+//     WHERE "linkId"=$1;
+//     `,
+//       [linkId]
+//     );
+
+//     await client.query(
+//       `
+//     DELETE FROM link
+//     WHERE id=$1;
+//     `,
+//       [linkId]
+//     );
+
+//     return `Deleted Link: ${linkId}`;
+//   } catch (err) {
+//     console.error("could not delete", err);
+//     throw err;
+//   }
+// }
 
 // TAG database methods
 

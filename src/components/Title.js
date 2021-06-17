@@ -5,7 +5,7 @@ const Title = () => {
   return (
     <>
       <div className="TitleText">
-        <h1>Linkerator!</h1>
+        <h1>The Great Linkerator</h1>
       </div>
     </>
   );

@@ -1,21 +1,61 @@
-import React from "react";
-import { TextField } from "@material-ui/core";
-import { useState } from "react";
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import "./SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = ({ links, setLinks, reset }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  let originalLinks = links.slice(0);
+
+  const handleSearch = (event) => {
+    let filteredLinks = links.filter((theLink) => {
+      return theLink.link.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        theLink.tags.filter((tag) => {
+          return tag.name.toLowerCase().includes(searchTerm.toLowerCase());
+        }).length > 0
+        ? theLink
+        : "";
+    });
+    setLinks(filteredLinks);
+  };
+
+  const handleOnChange = (event) => {
+    const keyword = event.target.value;
+    setSearchTerm(keyword);
+  };
+
+  const handleReset = () => {
+    reset();
+  };
+
+  const handleSort = () => {
+    let linkCount = [...links].sort(function (a, b) {
+      return parseInt(b.count) - parseInt(a.count);
+    });
+
+    setLinks(linkCount);
+  };
+
   return (
-    <div className="SearchBar">
-      <TextField
-        id="Search-Bar"
-        label="Search for links"
-        value={searchTerm}
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
-          //   <button>Search</button>
-        }}
-      />
+    <div className="searchbar">
+      <Form inline>
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={searchTerm}
+          onChange={handleOnChange}
+        />
+        <Button className="search-button" onClick={handleSearch}>
+          Search
+        </Button>
+        <Button className="reset-button" onClick={handleReset}>
+          Reset
+        </Button>
+        <Button className="reset-button" onClick={handleSort}>
+          Popular Links
+        </Button>
+      </Form>
     </div>
   );
 };
