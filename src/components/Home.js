@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getSomething } from "../api";
+
 // import Image from "../assets/well-guides-4hourmarathon-header-jumbo-v2.gif";
 import "./Home.css";
-
 
 const HOME = () => {
   return (
@@ -12,7 +11,6 @@ const HOME = () => {
         <p className="subTitle"> Cool Catchy Description for Links</p>
       </div>
     </body>
-    
   );
 };
 

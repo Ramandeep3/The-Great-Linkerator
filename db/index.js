@@ -74,6 +74,31 @@ async function getLinkById(id) {
   }
 }
 
+// async function deleteLink(linkId) {
+//   try {
+//     await client.query(
+//       `
+//     DELETE FROM link_tags
+//     WHERE "linkId"=$1;
+//     `,
+//       [linkId]
+//     );
+
+//     await client.query(
+//       `
+//     DELETE FROM link
+//     WHERE id=$1;
+//     `,
+//       [linkId]
+//     );
+
+//     return `Deleted Link: ${linkId}`;
+//   } catch (err) {
+//     console.error("could not delete", err);
+//     throw err;
+//   }
+// }
+
 // TAG database methods
 
 async function getAllTags() {
