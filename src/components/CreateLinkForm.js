@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import "./CreateLinkForm.css";
 
 import { createNewLinks } from "../api";
 
@@ -28,16 +29,34 @@ const CreateLinkForm = () => {
       <Button variant="primary" onClick={handleShow}>
         Add Link
       </Button>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        style={{
+          color: "rgba(106, 209, 175, 0.863)",
+        }}
+      >
+        <Modal.Header
+          style={{
+            backgroundColor: "rgba(131, 132, 133)",
+          }}
+          closeButton
+        >
           <Modal.Title>Add New Link</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body
+          style={{
+            backgroundColor: "rgba(131, 132, 133)",
+          }}
+        >
           <Form onSubmit={onFormSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Link Title</Form.Label>
               <Form.Control
+                style={{
+                  backgroundColor: "rgba(131, 132, 133)",
+                }}
                 type="text"
                 placeholder="Link Title"
                 onInput={(event) => {
@@ -48,6 +67,9 @@ const CreateLinkForm = () => {
             <Form.Group className="mb-3">
               <Form.Label>URL</Form.Label>
               <Form.Control
+                style={{
+                  backgroundColor: "rgba(131, 132, 133)",
+                }}
                 type="URL"
                 placeholder="https://www.example.com"
                 onInput={(event) => {
@@ -58,6 +80,9 @@ const CreateLinkForm = () => {
             <Form.Group className="mb-3">
               <Form.Label>Comments</Form.Label>
               <Form.Control
+                style={{
+                  backgroundColor: "rgba(131, 132, 133)",
+                }}
                 as="textarea"
                 rows={3}
                 onInput={(event) => {
@@ -68,6 +93,9 @@ const CreateLinkForm = () => {
             <Form.Group className="mb-3">
               <Form.Label>Tags</Form.Label>
               <Form.Control
+                style={{
+                  backgroundColor: "rgba(131, 132, 133)",
+                }}
                 type="text"
                 placeholder="Tags"
                 onInput={(event) => {
