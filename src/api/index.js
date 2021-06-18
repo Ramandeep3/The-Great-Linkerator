@@ -26,6 +26,7 @@ export async function createNewLinks([name, link, comment, tags] = "") {
       comment: comment,
       tags: tags,
     });
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
