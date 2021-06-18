@@ -1,8 +1,17 @@
 import React from "react";
 import "./CardLink.css";
+import { linksWithTags } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
 
 const CardLink = ({ links, setLinks }) => {
+  const handleTags = async (tagName) => {
+    try {
+      const tagReturn = await linksWithTags(tagName);
+      setLinks(tagReturn);
+    } catch (err) {
+      console.err(err);
+    }
+  };
   return links.map((link, index) => {
     return (
       <div className="CardLink" key={index}>
@@ -30,12 +39,20 @@ const CardLink = ({ links, setLinks }) => {
           </p>
           <p>
             Tags:
-            <span>
-              {" "}
-              {link.tags.map((tag) => (
-                <span key={tag.id}>{" " + tag.name}</span>
-              ))}
-            </span>
+            {link.tags.map((tags, index) => {
+              return (
+                <div key={index}>
+                  <button
+                    className="tags"
+                    onClick={() => {
+                      handleTags(tags.name);
+                    }}
+                  >
+                    {tags.name}
+                  </button>
+                </div>
+              );
+            })}
           </p>
         </div>
       </div>
