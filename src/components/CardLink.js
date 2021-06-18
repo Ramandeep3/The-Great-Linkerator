@@ -1,11 +1,17 @@
 import React from "react";
-import axios from "axios";
-
-import { getLinks } from "../api";
 import "./CardLink.css";
+import { linksWithTags } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
 
 const CardLink = ({ links, setLinks }) => {
+  const handleTags = async (tagName) => {
+    try {
+      const tagReturn = await linksWithTags(tagName);
+      setLinks(tagReturn);
+    } catch (err) {
+      console.err(err);
+    }
+  };
   return links.map((link, index) => {
     return (
       <div className="CardLink" key={index}>
@@ -14,7 +20,15 @@ const CardLink = ({ links, setLinks }) => {
         <div className="infoSection">
           <p>{link.name}</p>
           <p>
-            Link: <a href={link.link}>{link.link}</a>
+            Link:
+            <a
+              href="true"
+              onClick={() => {
+                window.open(link.link);
+              }}
+            >
+              {link.link}
+            </a>
           </p>
           <p>Comment: {link.comment} </p>
           <p>
@@ -25,12 +39,20 @@ const CardLink = ({ links, setLinks }) => {
           </p>
           <p>
             Tags:
-            <span>
-              {" "}
-              {link.tags.map((tag) => (
-                <span key={tag.id}>{" " + tag.name}</span>
-              ))}
-            </span>
+            {link.tags.map((tags, index) => {
+              return (
+                <div key={index}>
+                  <button
+                    className="tags"
+                    onClick={() => {
+                      handleTags(tags.name);
+                    }}
+                  >
+                    {tags.name}
+                  </button>
+                </div>
+              );
+            })}
           </p>
         </div>
       </div>

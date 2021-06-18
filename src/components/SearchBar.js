@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SearchBar.css";
+import CreateLinkForm from "./CreateLinkForm";
 
 const SearchBar = ({ links, setLinks, reset }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,11 +30,11 @@ const SearchBar = ({ links, setLinks, reset }) => {
   };
 
   const handleSort = () => {
-    let linkCount = [...links].sort(function (a, b) {
+    let linksCounter = [...links].sort(function (a, b) {
       return parseInt(b.count) - parseInt(a.count);
     });
 
-    setLinks(linkCount);
+    setLinks(linksCounter);
   };
 
   return (
@@ -46,15 +47,20 @@ const SearchBar = ({ links, setLinks, reset }) => {
           value={searchTerm}
           onChange={handleOnChange}
         />
-        <Button className="search-button" onClick={handleSearch}>
+        <Button
+          bsClass="custom-btn"
+          className="search-button"
+          onClick={handleSearch}
+        >
           Search
         </Button>
         <Button className="reset-button" onClick={handleReset}>
           Reset
         </Button>
-        <Button className="reset-button" onClick={handleSort}>
+        <Button className="popular-button" onClick={handleSort}>
           Popular Links
         </Button>
+        <CreateLinkForm />
       </Form>
     </div>
   );
