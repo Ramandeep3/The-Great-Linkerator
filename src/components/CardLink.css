@@ -1,30 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap");
 
 .CardLink {
-   font-family: 'Nunito', sans-serif;
-   background-color: rgba(106, 209, 175, 0.863);
-   margin: 15px 7.5px 7.5px;
-   padding: 10px 8px 5px 10px;
-   max-width: 27vw;
-   min-width: 20vw;
-   box-shadow: 7px 2px 9px rgba(0, 0, 0, 0.637);
+  font-family: "Nunito", sans-serif;
+  background-color: rgba(106, 209, 175, 0.863);
+  margin: 15px 7.5px 7.5px;
+  padding: 10px 8px 5px 10px;
+  width: 70px;
+  max-width: 27vw;
+  min-width: 20vw;
+  box-shadow: 7px 2px 9px rgba(0, 0, 0, 0.637);
 }
 .CardLink h1 {
-   text-align: center;
+  text-align: center;
 }
 #card-title-img {
-   
-   width: 70px;
+  width: 70px;
 }
 .infoSection > p {
-   font-weight: 800;
+  font-weight: 800;
 }
 .infoSection > p:first-child {
-   text-align: center;
+  text-align: center;
 }
+
 .infoSection > p:nth-child(5) > span {
-   color: #e9b014f3;
-   text-shadow: 3px 2px 2px black;
+  color: #e9b014f3;
+  text-shadow: 3px 2px 2px black;
+}
+.tags {
+  background-color: rgba(106, 209, 175, 0.863);
+  font-family: "Nunito", sans-serif;
+  color: #630330;
 }

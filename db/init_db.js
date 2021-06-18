@@ -43,7 +43,7 @@ async function createTables() {
       link TEXT NOT NULL,
       count INTEGER,
       comment VARCHAR(255) NOT NULL,
-      "dateshared" DATE default CURRENT_DATE
+      dateshared varchar(14) default to_char(CURRENT_DATE, 'mm / dd / yyyy')
     );
     CREATE TABLE link_tags(
       "linkId" INTEGER REFERENCES link(id),
