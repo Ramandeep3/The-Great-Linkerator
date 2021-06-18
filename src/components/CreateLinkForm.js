@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import "./CreateLinkForm.css";
 import { createNewLinks } from "../api";
+
+
 const CreateLinkForm = () => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
@@ -26,34 +29,35 @@ const CreateLinkForm = () => {
   return (
     <>
       <Button className="search-button" onClick={handleShow}>
-        Add Link
+        <AddCircleOutlineIcon fontSize='large' />
       </Button>
-      <Modal
+      <Modal class="theAddMODAL"
         show={show}
         onHide={handleClose}
         style={{
           color: "rgba(106, 209, 175, 0.863)",
         }}
       >
+      <div >
         <Modal.Header
           style={{
-            backgroundColor: "rgba(131, 132, 133)",
+            backgroundColor: "black",
           }}
-          closeButton
+          
         >
           <Modal.Title>Add New Link</Modal.Title>
         </Modal.Header>
         <Modal.Body
           style={{
-            backgroundColor: "rgba(131, 132, 133)",
+            backgroundColor: "black",
           }}
         >
-          <Form onSubmit={onFormSubmit}>
+          <Form className="addModal" onSubmit={onFormSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Link Title</Form.Label>
               <Form.Control
                 style={{
-                  backgroundColor: "rgba(131, 132, 133)",
+                  backgroundColor: "black",
                 }}
                 type="text"
                 placeholder="Link Title"
@@ -65,8 +69,9 @@ const CreateLinkForm = () => {
             <Form.Group className="mb-3">
               <Form.Label>URL</Form.Label>
               <Form.Control
+                required 
                 style={{
-                  backgroundColor: "rgba(131, 132, 133)",
+                  backgroundColor: "black",
                 }}
                 type="URL"
                 placeholder="https://www.example.com"
@@ -75,11 +80,11 @@ const CreateLinkForm = () => {
                 }}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" required>
               <Form.Label>Comments</Form.Label>
               <Form.Control
                 style={{
-                  backgroundColor: "rgba(131, 132, 133)",
+                  backgroundColor: "black",
                 }}
                 as="textarea"
                 rows={3}
@@ -92,7 +97,7 @@ const CreateLinkForm = () => {
               <Form.Label>Tags</Form.Label>
               <Form.Control
                 style={{
-                  backgroundColor: "rgba(131, 132, 133)",
+                  backgroundColor: "black",
                 }}
                 type="text"
                 placeholder="Tags"
@@ -116,7 +121,9 @@ const CreateLinkForm = () => {
             </div>
           </Form>
         </Modal.Body>
+        </div>
       </Modal>
+      
     </>
   );
 };

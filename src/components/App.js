@@ -25,9 +25,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Title />
-      <SearchBar links={links} setLinks={setLinks} reset={retrieveLinks} />
-
+      <div className="titleContainer">
+        <Title />
+      </div>
+      <div className="searchContainer">
+        <SearchBar links={links} setLinks={setLinks} reset={retrieveLinks} />
+      </div>
       <div className="cardContainer">
         <CardLink links={links} setLinks={setLinks} />
       </div>

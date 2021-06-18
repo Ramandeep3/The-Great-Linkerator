@@ -1,5 +1,16 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px 70px 10px 70px;
+  background-image: url("../assests/Only\ the\ Beginning.png");
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.titleContainer {
+  height: max-content;
 }
 
 .NavBar {
@@ -11,7 +22,38 @@
 
 .cardContainer {
   display: flex;
-  flex-flow: wrap;
+  flex-flow: row wrap;
+  justify-content: center;
+  overflow-y: auto;
   /* justify-content: space-around; */
   flex-grow: 2;
+  padding: 0px 20px 0px 20px;
+  max-height: 60vh;
+  width: 95vw;
+
+}
+
+.material-icons {
+  color: #fff;
+  cursor: pointer;
+
+  font-size: 40px;
+  box-sizing: content-box;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+}
+/* .cardContainer @media screen {
+  
+} */
+
+a {
+  padding: 5px;
+  word-wrap: break-word;
+  color: rgb(24, 24, 24);
+  text-shadow: 5px 3px 6px rgba(0, 0, 0, 0.555);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(238, 191, 89);
 }

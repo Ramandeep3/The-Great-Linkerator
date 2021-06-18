@@ -1,39 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,100&display=swap');
+
+.inputContainer {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
 .searchbar {
-  width: 29vw;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
   margin: 10px;
   align-items: center;
-  justify-content: center;
+  font-weight: 400;
+  text-shadow: 3px 2px 2px rgba(181, 199, 193, 0.863);
+  width: 35vw;
+  transform: translateX(48px);
 }
-.search-button {
-  margin: 10px;
-  background: rgb(189, 162, 8);
-  color: black;
-  border-radius: 3px;
-  padding: 5px 10px;
-  text-transform: uppercase;
+.searchbar:focus {
+  transform: scale(1.1);
+}
+.search-btn {
+  color: #fff;
+  background-color: #677ea0;
+  border-color: #0d6efd;
+}
+.form-control {
+  background-color: black;
+  border-color: rgba(106, 209, 175, 0.863);
+  min-width: 200px;
 }
 
-.reset-button {
+.form-control:focus {
+  background-color: black;
+  color: rgba(106, 209, 175, 0.863);
+  font-weight: bold;
+
+}
+
+button {
   margin: 10px;
-  text-transform: uppercase;
+
+  color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+  border-radius: 20%;
+}
+
+.filterBtns.Container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.filterBtns {
+  
+}
+
+ /* .search-button {
+  margin: 10px;
   background: rgb(189, 162, 8);
   color: black;
   border-radius: 3px;
   padding: 5px 10px;
-}
-.popular-button {
-  margin: 10px;
   text-transform: uppercase;
-  background: rgb(189, 162, 8);
+} */
+
+ /* {
+  background: rgba(189, 35, 8, 0.856);
   color: black;
-  border-radius: 3px;
-  padding: 5px 10px;
+
+} */
+.reset-buttonZ {
+  display: flex;
+  justify-items: center;
+ 
+
+  border-color: #e64c4c;
+ 
+  color: #fff;
+  box-shadow: 0 0 40px 40px #db3434 inset, 0 0 0 0 #db8534;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 }
-.link-button {
+.reset-buttonZ:hover {
+  box-shadow: 0 0 10px 0 #db3434 inset, 0 0 10px 4px #db3434;
+}
+.popular-buttonZ {
+  background-color: black;
+  border-color: rgb(106 209 175 / 86%);
+}
+/* .link-button {
   margin: 10px;
   text-transform: uppercase;
-  background: rgb(134, 115, 3);
+  background: rgb(199, 131, 4);
   color: rgb(247, 238, 238);
   border-radius: 3px;
   padding: 0px 0px;
-}
+}  */

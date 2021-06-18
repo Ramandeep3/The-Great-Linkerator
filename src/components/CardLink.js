@@ -2,6 +2,7 @@ import React from "react";
 import "./CardLink.css";
 import { linksWithTags } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const CardLink = ({ links, setLinks }) => {
   const handleTags = async (tagName) => {
@@ -14,46 +15,49 @@ const CardLink = ({ links, setLinks }) => {
   };
   return links.map((link, index) => {
     return (
-      <div className="CardLink" key={index}>
-        {/* <h1>Potential Card <i>image</i></h1> */}
-        <img src={img} alt="stock image" id="card-title-img" />
-        <div className="infoSection">
-          <p>{link.name}</p>
-          <p>
-            Link:
-            <a
-              href="true"
-              onClick={() => {
-                window.open(link.link);
-              }}
-            >
-              {link.link}
-            </a>
-          </p>
-          <p>Comment: {link.comment} </p>
-          <p>
-            Date Created:<span> {link.dateshared} </span>
-          </p>
-          <p>
-            Clicked: <span> {link.count} </span>
-          </p>
-          <p>
-            Tags:
-            {link.tags.map((tags, index) => {
-              return (
-                <div key={index}>
-                  <button
-                    className="tags"
+      <div className="CardlinkContainer">
+        <div className="CardLink" key={index}>
+          {/* <h1>Potential Card <i>image</i></h1> */}
+          <div className="cardHeader">
+            <img src={img} alt="stock image" id="card-title-img" />
+            <button> <DeleteForeverIcon fontSize='large' color="red" /> </button>
+          </div>
+          <div className="infoSection">
+            <p>{link.name}</p>
+            <p>
+              Link:
+              <a
+                href="true"
+                onClick={() => {
+                  window.open(link.link);
+                }}
+              >
+                {link.link}
+              </a>
+            </p>
+            <p>Comment: {link.comment} </p>
+            <p>
+              Date Created:<span> {link.dateshared} </span>
+            </p>
+            <p>
+              Clicked: <span> {link.count} </span>
+            </p>
+            
+            <span className="tagContainer">
+              {link.tags.map((tags, index) => {
+                return (
+                  <button key={index}
+                    className="tag"
                     onClick={() => {
                       handleTags(tags.name);
                     }}
                   >
-                    {tags.name}
+                    #{tags.name}
                   </button>
-                </div>
-              );
-            })}
-          </p>
+                );
+              })}
+            </span>
+          </div>
         </div>
       </div>
     );
