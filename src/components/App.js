@@ -4,7 +4,6 @@ import axios from "axios";
 import { getLinks } from "../api";
 import CreateLinkForm from "./CreateLinkForm";
 import SearchBar from "./SearchBar";
-import NewLinkFeedback from "./CreateLinkFeedback";
 import CardLink from "./CardLink";
 import "./App.css";
 

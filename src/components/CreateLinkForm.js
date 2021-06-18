@@ -5,25 +5,24 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./CreateLinkForm.css";
-
 import { createNewLinks } from "../api";
-
 const CreateLinkForm = () => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [comment, setComment] = useState("");
   const [tags, setTags] = useState("");
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const onFormSubmit = (event) => {
+  const onFormSubmit = async (event) => {
     event.preventDefault();
-    createNewLinks([name, link, comment, tags]);
+    try {
+      const forFeedback = await createNewLinks([name, link, comment, tags]);
+      console.log(forFeedback.message);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -44,7 +43,6 @@ const CreateLinkForm = () => {
         >
           <Modal.Title>Add New Link</Modal.Title>
         </Modal.Header>
-
         <Modal.Body
           style={{
             backgroundColor: "rgba(131, 132, 133)",
@@ -101,7 +99,7 @@ const CreateLinkForm = () => {
                 onInput={(event) => {
                   setTags(event.target.value);
                 }}
-              />
+              ></Form.Control>
             </Form.Group>
             <div style={{ float: "right" }}>
               <Button variant="danger" onClick={handleClose}>
