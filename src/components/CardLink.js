@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-
-import { getLinks } from "../api";
 import "./CardLink.css";
 import img from "../../src/assests/grid-globe-link.png";
 
@@ -14,7 +11,15 @@ const CardLink = ({ links, setLinks }) => {
         <div className="infoSection">
           <p>{link.name}</p>
           <p>
-            Link: <a href={link.link}>{link.link}</a>
+            Link:
+            <a
+              href="true"
+              onClick={() => {
+                window.open(link.link);
+              }}
+            >
+              {link.link}
+            </a>
           </p>
           <p>Comment: {link.comment} </p>
           <p>

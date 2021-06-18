@@ -1,13 +1,39 @@
-#Search-Bar {
-  width: 45vw;
-  margin-left: 10px;
+.searchbar {
+  width: 29vw;
+  margin: 10px;
   align-items: center;
   justify-content: center;
 }
 .search-button {
   margin: 10px;
+  background: rgb(189, 162, 8);
+  color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
 }
 
 .reset-button {
   margin: 10px;
+  text-transform: uppercase;
+  background: rgb(189, 162, 8);
+  color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+.popular-button {
+  margin: 10px;
+  text-transform: uppercase;
+  background: rgb(189, 162, 8);
+  color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+.link-button {
+  margin: 10px;
+  text-transform: uppercase;
+  background: rgb(134, 115, 3);
+  color: rgb(247, 238, 238);
+  border-radius: 3px;
+  padding: 0px 0px;
 }
