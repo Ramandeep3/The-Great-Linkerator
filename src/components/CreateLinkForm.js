@@ -25,7 +25,7 @@ const CreateLinkForm = () => {
   };
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="search-button" onClick={handleShow}>
         Add Link
       </Button>
       <Modal
