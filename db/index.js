@@ -82,31 +82,6 @@ async function getLinkById(id) {
   }
 }
 
-// async function deleteLink(linkId) {
-//   try {
-//     await client.query(
-//       `
-//     DELETE FROM link_tags
-//     WHERE "linkId"=$1;
-//     `,
-//       [linkId]
-//     );
-
-//     await client.query(
-//       `
-//     DELETE FROM link
-//     WHERE id=$1;
-//     `,
-//       [linkId]
-//     );
-
-//     return `Deleted Link: ${linkId}`;
-//   } catch (err) {
-//     console.error("could not delete", err);
-//     throw err;
-//   }
-// }
-
 // TAG database methods
 
 async function getAllTags() {
@@ -173,16 +148,13 @@ async function updateLink(linkId, fields = {}) {
       );
     }
 
-    // return early if there's no tags to update
     if (tags === undefined) {
       return await getLinkById(linkId);
     }
 
-    // make any new tags that need to be made
     const tagList = await createTags(tags);
     const tagListIdString = tagList.map((tag) => `${tag.id}`).join(", ");
 
-    // delete any link_tags from the database which aren't in that tagList
     await client.query(
       `
       DELETE FROM link_tags
@@ -193,7 +165,6 @@ async function updateLink(linkId, fields = {}) {
       [linkId]
     );
 
-    // and create link_tags as necessary
     await addTagsToLink(linkId, tagList);
 
     return await getLinkById(linkId);

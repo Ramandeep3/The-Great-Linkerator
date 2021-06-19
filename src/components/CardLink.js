@@ -2,7 +2,7 @@ import React from "react";
 import "./CardLink.css";
 import { linksWithTags } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const CardLink = ({ links, setLinks }) => {
   const handleTags = async (tagName) => {
@@ -17,10 +17,12 @@ const CardLink = ({ links, setLinks }) => {
     return (
       <div className="CardlinkContainer">
         <div className="CardLink" key={index}>
-          {/* <h1>Potential Card <i>image</i></h1> */}
           <div className="cardHeader">
             <img src={img} alt="stock image" id="card-title-img" />
-            <button> <DeleteForeverIcon fontSize='large' color="red" /> </button>
+            <button>
+              {" "}
+              <DeleteForeverIcon fontSize="large" color="red" />{" "}
+            </button>
           </div>
           <div className="infoSection">
             <p>{link.name}</p>
@@ -42,11 +44,12 @@ const CardLink = ({ links, setLinks }) => {
             <p>
               Clicked: <span> {link.count} </span>
             </p>
-            
+
             <span className="tagContainer">
               {link.tags.map((tags, index) => {
                 return (
-                  <button key={index}
+                  <button
+                    key={index}
                     className="tag"
                     onClick={() => {
                       handleTags(tags.name);

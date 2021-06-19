@@ -50,12 +50,3 @@ export async function updateLinks(linkId, updatedLink) {
     throw error;
   }
 }
-
-// / export async function deleteLink(linkId) {
-//   try {
-//     const { data } = await axios.delete(`/api/links/${linkId.id}`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }

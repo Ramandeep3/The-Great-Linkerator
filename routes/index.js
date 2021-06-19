@@ -4,11 +4,7 @@ const {
   createLink,
   getAllTags,
   getAllLinks,
-  getLinkById,
-  createTags,
   getLinksByTagName,
-  addTagsToLink,
-  createLinkTag,
   updateLink,
 } = require("../db");
 
@@ -22,26 +18,6 @@ apiRouter.get("/links", async (req, res, next) => {
     next(error);
   }
 });
-
-// apiRouter.delete("/links/:id", async (req, res, next) => {
-//   try {
-//     const link = await getLinkById(req.params.id);
-//     if (link) {
-//       const theDeletedLink = await deleteLink(link.id);
-
-//       res.send({
-//         link: theDeletedLink,
-//       });
-//     } else {
-//       next({
-//         name: "Error with deleting the link",
-//         message: "You cannot delete!",
-//       });
-//     }
-//   } catch ({ name, message }) {
-//     next({ name, message });
-//   }
-// });
 
 // TAG routes
 apiRouter.get("/tags", async (req, res, next) => {

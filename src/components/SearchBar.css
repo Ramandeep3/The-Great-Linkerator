@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,100&display=swap");
 
 .inputContainer {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
 form {
@@ -39,7 +39,6 @@ form {
   background-color: black;
   color: rgba(106, 209, 175, 0.863);
   font-weight: bold;
-
 }
 
 button {
@@ -57,31 +56,13 @@ button {
   justify-content: center;
   margin-bottom: 10px;
 }
-.filterBtns {
-  
-}
 
- /* .search-button {
-  margin: 10px;
-  background: rgb(189, 162, 8);
-  color: black;
-  border-radius: 3px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-} */
-
- /* {
-  background: rgba(189, 35, 8, 0.856);
-  color: black;
-
-} */
 .reset-buttonZ {
   display: flex;
   justify-items: center;
- 
 
   border-color: #e64c4c;
- 
+
   color: #fff;
   box-shadow: 0 0 40px 40px #db3434 inset, 0 0 0 0 #db8534;
   -webkit-transition: all 150ms ease-in-out;
@@ -94,11 +75,3 @@ button {
   background-color: black;
   border-color: rgb(106 209 175 / 86%);
 }
-/* .link-button {
-  margin: 10px;
-  text-transform: uppercase;
-  background: rgb(199, 131, 4);
-  color: rgb(247, 238, 238);
-  border-radius: 3px;
-  padding: 0px 0px;
-}  */

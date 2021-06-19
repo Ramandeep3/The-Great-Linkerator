@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-// import Image from "../assets/well-guides-4hourmarathon-header-jumbo-v2.gif";
 import "./Home.css";
 
 const HOME = () => {
