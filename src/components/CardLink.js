@@ -1,7 +1,7 @@
 import React from "react";
 import "./CardLink.css";
 import { linksWithTags } from "../api";
-import img from "../../src/assests/grid-globe-link.png";
+import globeImage from "../../src/assests/grid-globe-link.png";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const CardLink = ({ links, setLinks }) => {
@@ -18,7 +18,7 @@ const CardLink = ({ links, setLinks }) => {
       <div className="CardlinkContainer">
         <div className="CardLink" key={index}>
           <div className="cardHeader">
-            <img src={img} alt="stock image" id="card-title-img" />
+            <img src={globeImage} alt="stock" id="card-title-img" />
             <button>
               {" "}
               <DeleteForeverIcon fontSize="large" color="red" />{" "}
