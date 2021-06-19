@@ -10,6 +10,7 @@ const {
   addTagsToLink,
   createLinkTag,
   updateLink,
+  updateClickCount
 } = require("../db");
 
 // LINK routes
@@ -99,6 +100,19 @@ apiRouter.post("/links", async (req, res, next) => {
     next({ name, message });
   }
 });
+
+apiRouter.patch("/:id/clicks", async (req, res, next) => {
+  const {id} = req.params;
+
+  try {
+    await updateClickCount(id);
+    res.send({
+      message:'Click count + 1'
+    })
+  } catch (err) {
+    throw err;
+  }
+})
 
 apiRouter.patch("/links/:id", async (req, res, next) => {
   const { id } = req.params;

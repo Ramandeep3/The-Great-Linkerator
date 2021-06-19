@@ -32,7 +32,7 @@ const App = () => {
         <SearchBar links={links} setLinks={setLinks} reset={retrieveLinks} />
       </div>
       <div className="cardContainer">
-        <CardLink links={links} setLinks={setLinks} />
+        <CardLink links={links} setLinks={setLinks} reset={retrieveLinks} />
       </div>
     </div>
   );

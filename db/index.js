@@ -13,6 +13,7 @@ const client = new Client({
 
 // LINK database methods
 async function createLink({ name, link, count, comment, tags = [] }) {
+  if (!count) { count = 0};
   try {
     const {
       rows: [links],
@@ -256,7 +257,21 @@ async function addTagsToLink(linkId, tagList) {
   }
 }
 
-// export
+const updateClickCount = async (linkId) => {
+  try {
+    const { rows } = await client.query(
+      `
+        UPDATE link
+        SET count = count + 1
+        WHERE id = $1;
+      `, [linkId]
+    );
+  } catch (err) {
+    throw error;
+  }
+}
+
+// export db methods
 module.exports = {
   client,
   createLink,
@@ -268,5 +283,5 @@ module.exports = {
   addTagsToLink,
   createLinkTag,
   updateLink,
-  // db methods
+  updateClickCount
 };

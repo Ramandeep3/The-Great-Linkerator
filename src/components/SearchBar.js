@@ -64,7 +64,7 @@ const SearchBar = ({ links, setLinks, reset }) => {
         </div>
         <div className="filterBtns Container">
           <Button className="reset-buttonZ" onClick={handleReset}>
-            <MaterialIcon icon="restart_alt" size={40} color="lightgrey" />
+            <MaterialIcon icon="restart_alt" size={40} color="black" />
 
           
           </Button>

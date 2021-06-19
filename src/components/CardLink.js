@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useEffect } from "react";
 import "./CardLink.css";
-import { linksWithTags } from "../api";
+import { linksWithTags, updateCardClicks } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-const CardLink = ({ links, setLinks }) => {
+const CardLink = ({ links, setLinks, reset }) => {
   const handleTags = async (tagName) => {
     try {
       const tagReturn = await linksWithTags(tagName);
@@ -13,6 +13,10 @@ const CardLink = ({ links, setLinks }) => {
       console.err(err);
     }
   };
+  const handleReset = () => {
+    reset();
+  };
+
   return links.map((link, index) => {
     return (
       <div className="CardlinkContainer">
@@ -28,7 +32,10 @@ const CardLink = ({ links, setLinks }) => {
               Link:
               <a
                 href="true"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleReset();
+                  updateCardClicks(link.id);
                   window.open(link.link);
                 }}
               >
@@ -42,7 +49,6 @@ const CardLink = ({ links, setLinks }) => {
             <p>
               Clicked: <span> {link.count} </span>
             </p>
-            
             <span className="tagContainer">
               {link.tags.map((tags, index) => {
                 return (
