@@ -59,7 +59,8 @@ const CardLink = ({ links, setLinks, reset }) => {
             <span className="tagContainer">
               {link.tags.map((tags, index) => {
                 return (
-                  <button key={index}
+                  <button
+                    key={index}
                     className="tag"
                     onClick={() => {
                       handleTags(tags.name);

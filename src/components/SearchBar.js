@@ -54,17 +54,20 @@ const SearchBar = ({ links, setLinks, reset }) => {
             className="search-button"
             onClick={handleSearch}
           >
-          <DoubleArrowIcon />
+            <DoubleArrowIcon />
           </Button>
         </div>
         <div className="filterBtns Container">
           <Button className="reset-buttonZ" onClick={handleReset}>
             <MaterialIcon icon="restart_alt" size={40} color="black" />
-
-          
           </Button>
           <Button className="popular-buttonZ" onClick={handleSort}>
-            Trending <TrendingUpIcon fontSize='large' transform='translate' color="rgb(106 209 175 / 86%)" />
+            Trending{" "}
+            <TrendingUpIcon
+              fontSize="large"
+              transform="translate"
+              color="rgb(106 209 175 / 86%)"
+            />
           </Button>
           <CreateLinkForm />
         </div>

@@ -8,7 +8,7 @@ import { createNewLinks, getLinks } from "../api";
 import "./CreateLinkForm.css";
 
 
-const CreateLinkForm = (reset) => {
+const CreateLinkForm = () => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [comment, setComment] = useState("");
@@ -18,16 +18,17 @@ const CreateLinkForm = (reset) => {
   const handleShow = () => setShow(true);
   const onFormSubmit = async (e) => {
     e.preventDefault();
-
-  const retrieveLinks = () => {
-    getLinks()
-    .then((link) => {
-      setLink(link);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  };
+    window.location.reload();
+  
+  // const retrieveLinks = () => {
+  //   getLinks()
+  //   .then((link) => {
+  //     setLink(link);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // };
 
   // const handleReset = () => { reset(); };
 
@@ -41,9 +42,10 @@ const CreateLinkForm = (reset) => {
   return (
     <>
       <Button className="search-button" onClick={handleShow}>
-        <AddCircleOutlineIcon fontSize='large' />
+        <AddCircleOutlineIcon fontSize="large" />
       </Button>
-      <Modal class="theAddMODAL"
+      <Modal
+        class="theAddMODAL"
         show={show}
         onHide={handleClose}
         style={{
