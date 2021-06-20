@@ -53,11 +53,10 @@ export async function updateLinks(linkId, updatedLink) {
 
 export async function updateCardClicks(id) {
   try {
-    const res =  await axios.patch(`api/${id}/clicks`,
-    { header: { 'Content-Type': 'application/json'},
-    })
+    const res = await axios.patch(`api/${id}/clicks`, {
+      header: { "Content-Type": "application/json" },
+    });
 
-    console.log(res)
     return res;
   } catch (err) {
     console.log(err);
@@ -66,10 +65,9 @@ export async function updateCardClicks(id) {
 
 export async function deleteLink(linkId) {
   try {
-    const  data  = await axios.delete(`/api/links/${linkId}`,
-    { header: { 'Content-Type': 'application/json'},
+    const data = await axios.delete(`/api/links/${linkId}`, {
+      header: { "Content-Type": "application/json" },
     });
-    console.log(data);
     return data;
   } catch (error) {
     throw error;
