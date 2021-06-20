@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Title } from "../components";
 import { getLinks } from "../api";
-
 import SearchBar from "./SearchBar";
 import CardLink from "./CardLink";
 import "./App.css";
@@ -14,7 +13,7 @@ const App = () => {
         setLinks(link);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
       });
   };
   useEffect(() => {
@@ -30,7 +29,7 @@ const App = () => {
         <SearchBar links={links} setLinks={setLinks} reset={retrieveLinks} />
       </div>
       <div className="cardContainer">
-        <CardLink links={links} setLinks={setLinks} />
+        <CardLink links={links} setLinks={setLinks} reset={retrieveLinks} />
       </div>
     </div>
   );

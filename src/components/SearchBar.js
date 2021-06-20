@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import "./SearchBar.css";
 import CreateLinkForm from "./CreateLinkForm";
 import MaterialIcon from "material-icons-react";
-import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
-import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import "./SearchBar.css";
 
 const SearchBar = ({ links, setLinks, reset }) => {
   const [searchTerm, setSearchTerm] = useState("");
-
   const handleSearch = (event) => {
     let filteredLinks = links.filter((theLink) => {
       return theLink.link.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -60,7 +59,7 @@ const SearchBar = ({ links, setLinks, reset }) => {
         </div>
         <div className="filterBtns Container">
           <Button className="reset-buttonZ" onClick={handleReset}>
-            <MaterialIcon icon="restart_alt" size={40} color="lightgrey" />
+            <MaterialIcon icon="restart_alt" size={40} color="black" />
           </Button>
           <Button className="popular-buttonZ" onClick={handleSort}>
             Trending{" "}

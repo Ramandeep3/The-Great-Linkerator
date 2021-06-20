@@ -1,11 +1,17 @@
 const apiRouter = require("express").Router();
 
 const {
+  createTags,
+  addTagsToLink,
+  createLinkTag,
   createLink,
   getAllTags,
   getAllLinks,
+  getLinkById,
   getLinksByTagName,
   updateLink,
+  updateClickCount,
+  deleteLink
 } = require("../db");
 
 // LINK routes
@@ -16,6 +22,25 @@ apiRouter.get("/links", async (req, res, next) => {
     res.send({ links: theLinks });
   } catch (error) {
     next(error);
+  }
+});
+
+apiRouter.delete("/links/:id", async (req, res, next) => {
+  try {
+    const link = await getLinkById(req.params.id);
+    if (link) {
+      const theDeletedLink = await deleteLink(link.id);
+      res.send({
+        link: theDeletedLink
+      });
+    } else {
+      next({
+        name: "Error with deleting the link",
+        message: "You cannot delete!",
+      });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
@@ -75,6 +100,19 @@ apiRouter.post("/links", async (req, res, next) => {
     next({ name, message });
   }
 });
+
+apiRouter.patch("/:id/clicks", async (req, res, next) => {
+  const {id} = req.params;
+
+  try {
+    await updateClickCount(id);
+    res.send({
+      message:'Click count + 1'
+    })
+  } catch (err) {
+    throw err;
+  }
+})
 
 apiRouter.patch("/links/:id", async (req, res, next) => {
   const { id } = req.params;

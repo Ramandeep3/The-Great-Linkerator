@@ -1,10 +1,10 @@
 import React from "react";
 import "./CardLink.css";
-import { linksWithTags } from "../api";
-import globeImage from "../../src/assests/grid-globe-link.png";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { linksWithTags, updateCardClicks, deleteLink } from "../api";
+import img from "../../src/assests/grid-globe-link.png";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-const CardLink = ({ links, setLinks }) => {
+const CardLink = ({ links, setLinks, reset }) => {
   const handleTags = async (tagName) => {
     try {
       const tagReturn = await linksWithTags(tagName);
@@ -13,15 +13,24 @@ const CardLink = ({ links, setLinks }) => {
       console.err(err);
     }
   };
+  const handleReset = () => {
+    reset();
+  };
+
   return links.map((link, index) => {
     return (
       <div className="CardlinkContainer">
         <div className="CardLink" key={index}>
           <div className="cardHeader">
-            <img src={globeImage} alt="stock" id="card-title-img" />
-            <button>
-              {" "}
-              <DeleteForeverIcon fontSize="large" color="red" />{" "}
+            <img src={img} alt="Globe" id="card-title-img" />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteLink(link.id);
+                handleReset();
+              }}
+            > 
+              <DeleteForeverIcon fontSize='large' color="red" /> 
             </button>
           </div>
           <div className="infoSection">
@@ -30,8 +39,11 @@ const CardLink = ({ links, setLinks }) => {
               Link:
               <a
                 href="true"
-                onClick={() => {
-                  window.open(link.link);
+                onClick={(e) => {
+                  e.preventDefault();
+                  updateCardClicks(link.id);
+                  handleReset();
+                  // window.open(link.link);
                 }}
               >
                 {link.link}
@@ -44,7 +56,6 @@ const CardLink = ({ links, setLinks }) => {
             <p>
               Clicked: <span> {link.count} </span>
             </p>
-
             <span className="tagContainer">
               {link.tags.map((tags, index) => {
                 return (

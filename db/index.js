@@ -1,10 +1,15 @@
 const { Client } = require("pg");
-const DB_NAME = "localhost:5432/linkerator";
-const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
-const client = new Client(DB_URL);
+const client = new Client({
+  connectionString:
+    process.env.DATABASE_URL || "postgres://localhost:5432/linkerator",
+  ssl:
+    process.env.NODE_ENV === "production" 
+    ? { rejectUnauthorized: false } : undefined,
+});
 
 // LINK database methods
 async function createLink({ name, link, count, comment, tags = [] }) {
+  if (!count) { count = 0};
   try {
     const {
       rows: [links],
@@ -74,8 +79,29 @@ async function getLinkById(id) {
   }
 }
 
-// TAG database methods
+async function deleteLink(linkId) {
+  try {
+    await client.query(
+      `
+        DELETE FROM link_tags
+        WHERE "linkId"=$1;
+      `, [linkId]
+    );
 
+    await client.query(
+      `
+        DELETE FROM link
+        WHERE id=$1;
+      `, [linkId]
+    );
+    return `Deleted Link: ${linkId}`;
+  } catch (err) {
+    console.error("Deletion Error: ", err);
+    throw err;
+  }
+}
+
+// TAG database methods
 async function getAllTags() {
   try {
     const { rows } = await client.query(`SELECT * FROM tags;`);
@@ -167,7 +193,6 @@ async function updateLink(linkId, fields = {}) {
 }
 
 // LINK and TAG database methods
-
 async function getLinksByTagName(tagName) {
   try {
     const { rows: tagIds } = await client.query(
@@ -219,7 +244,21 @@ async function addTagsToLink(linkId, tagList) {
   }
 }
 
-// export
+const updateClickCount = async (linkId) => {
+  try {
+    const { rows } = await client.query(
+      `
+        UPDATE link
+        SET count = count + 1
+        WHERE id = $1;
+      `, [linkId]
+    );
+  } catch (err) {
+    throw error;
+  }
+}
+
+// export db methods
 module.exports = {
   client,
   createLink,
@@ -231,5 +270,6 @@ module.exports = {
   addTagsToLink,
   createLinkTag,
   updateLink,
-  // db methods
+  updateClickCount,
+  deleteLink
 };
