@@ -16,9 +16,12 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.19.2",
     "bootstrap": "^5.0.1",
     "express": "^4.17.1",
+    "material-icons-react": "^1.0.4",
+    "material-ui-icons": "^1.0.0-beta.36",
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
     "react": "^16.13.1",

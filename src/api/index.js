@@ -51,11 +51,25 @@ export async function updateLinks(linkId, updatedLink) {
   }
 }
 
-// / export async function deleteLink(linkId) {
-//   try {
-//     const { data } = await axios.delete(`/api/links/${linkId.id}`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export async function updateCardClicks(id) {
+  try {
+    const res = await axios.patch(`api/${id}/clicks`, {
+      header: { "Content-Type": "application/json" },
+    });
+
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteLink(linkId) {
+  try {
+    const data = await axios.delete(`/api/links/${linkId}`, {
+      header: { "Content-Type": "application/json" },
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

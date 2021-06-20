@@ -1,39 +1,78 @@
-.searchbar {
-  width: 29vw;
-  margin: 10px;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,100&display=swap");
+
+.inputContainer {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 100vw;
+}
+.searchbar {
+  display: flex;
   justify-content: center;
+  width: fit-content;
+  margin: 10px;
+  margin-bottom: 0px;
+  align-items: center;
+  font-weight: 400;
+  text-shadow: 3px 2px 2px rgba(181, 199, 193, 0.863);
+  width: 39vw;
+}
+.searchbar:focus {
+  transform: scale(1.1);
 }
 .search-button {
-  margin: 10px;
-  background: rgb(189, 162, 8);
-  color: black;
-  border-radius: 3px;
-  padding: 5px 10px;
-  text-transform: uppercase;
+  margin-right: 0px;
 }
 
-.reset-button {
-  margin: 10px;
-  text-transform: uppercase;
-  background: rgb(189, 162, 8);
+.form-control {
+  background-color: black;
+  border-color: rgba(106, 209, 175, 0.863);
+  min-width: 200px;
+}
+.form-control:focus {
+  background-color: black;
+  color: rgba(106, 209, 175, 0.863);
+  font-weight: bold;
+}
+
+button {
+  margin: 9px;
   color: black;
   border-radius: 3px;
   padding: 5px 10px;
+  border-radius: 20%;
 }
-.popular-button {
-  margin: 10px;
-  text-transform: uppercase;
-  background: rgb(189, 162, 8);
+
+.filterBtns.Container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: var(--bs-yellow);
+  border-color: rgb(0, 0, 0);
   color: black;
-  border-radius: 3px;
-  padding: 5px 10px;
+  box-shadow: 0 0 10px 0 var(--sexyGreen) inset, 0 0 10px 4px var(--sexyGreen) ;
 }
-.link-button {
-  margin: 10px;
-  text-transform: uppercase;
-  background: rgb(134, 115, 3);
-  color: rgb(247, 238, 238);
-  border-radius: 3px;
-  padding: 0px 0px;
+
+.reset-buttonZ {
+  display: flex;
+  justify-items: center;
+  border-color: #e64c4c;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #db3434 inset, 0 0 0 0 #db8534;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  margin-left: 0px;
+}
+
+.popular-buttonZ {
+  background-color: black;
+  border-color: rgb(106 209 175 / 86%);
 }

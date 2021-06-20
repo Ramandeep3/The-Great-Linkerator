@@ -1,19 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap");
 
+
+.CardlinkContainer {
+  display: flex;
+  flex-flow: row wrap
+}
 .CardLink {
+  display: inline-block;
   font-family: "Nunito", sans-serif;
-  background-color: rgba(106, 209, 175, 0.863);
+  background-color: rgba(106, 209, 175, 0.767);
   margin: 15px 7.5px 7.5px;
-  padding: 10px 8px 5px 10px;
-  width: 70px;
-  max-width: 27vw;
-  min-width: 20vw;
-  box-shadow: 7px 2px 9px rgba(0, 0, 0, 0.637);
+  padding: 15px 10px 10px 15px;
+
+
+  box-shadow: 10px 2px 9px rgba(0, 0, 0, 0.637);
+  min-width: 400px;
+  max-width: 25vw;
+  max-height: 100%;
+
+
 }
 .CardLink h1 {
   text-align: center;
 }
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.cardHeader button {
+  background-color: transparent;
+  padding: 0px ;
+  margin: 0px;
+  color: #e93636ea;
+  transition: ease-in-out 0.5s;
+}
+.cardHeader button:hover {
+  transform: rotate(385deg) scale(1.2);
+}
+.cardHeader img {
+  transition: ease-out 4s ;
+  animation-iteration-count: infinite;
+}
+.CardlinkContainer:hover #card-title-img {
+  transform: rotateY(385deg) scale(1.1);
+
+}
+
+
 #card-title-img {
   width: 70px;
 }
@@ -25,11 +59,22 @@
 }
 
 .infoSection > p:nth-child(5) > span {
-  color: #e9b014f3;
-  text-shadow: 3px 2px 2px black;
+  color: #131312f3;
+  text-shadow: 3px 2px 2px rgb(18, 218, 124);
 }
-.tags {
-  background-color: rgba(106, 209, 175, 0.863);
+.tagContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+.tag {
+  width: fit-content;
+  background-color:initial;
   font-family: "Nunito", sans-serif;
-  color: #630330;
+  font-weight: bolder;
+  color: #000000;
+  text-shadow: 1px 2px 2px rgb(18, 218, 124);
+
+}
+.tag:hover {
+  text-decoration: underline;
 }

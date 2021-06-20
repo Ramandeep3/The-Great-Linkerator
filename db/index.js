@@ -1,18 +1,15 @@
 const { Client } = require("pg");
-const DB_NAME = "localhost:5432/linkerator";
-const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client({
   connectionString:
     process.env.DATABASE_URL || "postgres://localhost:5432/linkerator",
   ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : undefined,
+    process.env.NODE_ENV === "production" 
+    ? { rejectUnauthorized: false } : undefined,
 });
-// const client = new Client(DB_URL);
 
 // LINK database methods
 async function createLink({ name, link, count, comment, tags = [] }) {
+  if (!count) { count = 0};
   try {
     const {
       rows: [links],
@@ -82,33 +79,29 @@ async function getLinkById(id) {
   }
 }
 
-// async function deleteLink(linkId) {
-//   try {
-//     await client.query(
-//       `
-//     DELETE FROM link_tags
-//     WHERE "linkId"=$1;
-//     `,
-//       [linkId]
-//     );
+async function deleteLink(linkId) {
+  try {
+    await client.query(
+      `
+        DELETE FROM link_tags
+        WHERE "linkId"=$1;
+      `, [linkId]
+    );
 
-//     await client.query(
-//       `
-//     DELETE FROM link
-//     WHERE id=$1;
-//     `,
-//       [linkId]
-//     );
-
-//     return `Deleted Link: ${linkId}`;
-//   } catch (err) {
-//     console.error("could not delete", err);
-//     throw err;
-//   }
-// }
+    await client.query(
+      `
+        DELETE FROM link
+        WHERE id=$1;
+      `, [linkId]
+    );
+    return `Deleted Link: ${linkId}`;
+  } catch (err) {
+    console.error("Deletion Error: ", err);
+    throw err;
+  }
+}
 
 // TAG database methods
-
 async function getAllTags() {
   try {
     const { rows } = await client.query(`SELECT * FROM tags;`);
@@ -173,16 +166,13 @@ async function updateLink(linkId, fields = {}) {
       );
     }
 
-    // return early if there's no tags to update
     if (tags === undefined) {
       return await getLinkById(linkId);
     }
 
-    // make any new tags that need to be made
     const tagList = await createTags(tags);
     const tagListIdString = tagList.map((tag) => `${tag.id}`).join(", ");
 
-    // delete any link_tags from the database which aren't in that tagList
     await client.query(
       `
       DELETE FROM link_tags
@@ -193,7 +183,6 @@ async function updateLink(linkId, fields = {}) {
       [linkId]
     );
 
-    // and create link_tags as necessary
     await addTagsToLink(linkId, tagList);
 
     return await getLinkById(linkId);
@@ -204,7 +193,6 @@ async function updateLink(linkId, fields = {}) {
 }
 
 // LINK and TAG database methods
-
 async function getLinksByTagName(tagName) {
   try {
     const { rows: tagIds } = await client.query(
@@ -256,7 +244,21 @@ async function addTagsToLink(linkId, tagList) {
   }
 }
 
-// export
+const updateClickCount = async (linkId) => {
+  try {
+    const { rows } = await client.query(
+      `
+        UPDATE link
+        SET count = count + 1
+        WHERE id = $1;
+      `, [linkId]
+    );
+  } catch (err) {
+    throw error;
+  }
+}
+
+// export db methods
 module.exports = {
   client,
   createLink,
@@ -268,5 +270,6 @@ module.exports = {
   addTagsToLink,
   createLinkTag,
   updateLink,
-  // db methods
+  updateClickCount,
+  deleteLink
 };
