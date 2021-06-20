@@ -15,11 +15,11 @@ form {
   justify-content: center;
   width: fit-content;
   margin: 10px;
+  margin-bottom: 0px;
   align-items: center;
   font-weight: 400;
   text-shadow: 3px 2px 2px rgba(181, 199, 193, 0.863);
   width: 39vw;
-  /* transform: translateX(48px); offsets the search bar*/ 
 }
 .searchbar:focus {
   transform: scale(1.1);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -32,7 +32,7 @@ const CreateLinkForm = (reset) => {
   // const handleReset = () => { reset(); };
 
     try {
-      const forFeedback = await createNewLinks([name, link, comment, tags]);
+      await createNewLinks([name, link, comment, tags]);
       retrieveLinks();
     } catch (error) {
       console.log(error);
