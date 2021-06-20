@@ -1,18 +1,14 @@
-import React,  { useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import "./SearchBar.css";
 import CreateLinkForm from "./CreateLinkForm";
-// import RotateLeftIcon from '@material-ui/icons/RotateLeft';
-import MaterialIcon, {restart_alt} from "material-icons-react";
+import MaterialIcon from "material-icons-react";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { Tooltip } from '@material-ui/core';
+import "./SearchBar.css";
 
 const SearchBar = ({ links, setLinks, reset }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  let originalLinks = links.slice(0);
-
   const handleSearch = (event) => {
     let filteredLinks = links.filter((theLink) => {
       return theLink.link.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -43,7 +39,6 @@ const SearchBar = ({ links, setLinks, reset }) => {
   };
 
   return (
-
     <div className="inputContainer">
       <Form inline>
         <div className="searchbar">

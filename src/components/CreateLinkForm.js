@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-// npm install react-bootstrap bootstrap@5.0.1 needed for form and modal
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { createNewLinks, getLinks } from "../api";
 import "./CreateLinkForm.css";
-import { createNewLinks } from "../api";
 
 
-const CreateLinkForm = () => {
+const CreateLinkForm = (reset) => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [comment, setComment] = useState("");
@@ -17,11 +16,24 @@ const CreateLinkForm = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const onFormSubmit = async (event) => {
-    event.preventDefault();
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+
+  const retrieveLinks = () => {
+    getLinks()
+    .then((link) => {
+      setLink(link);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  // const handleReset = () => { reset(); };
+
     try {
       const forFeedback = await createNewLinks([name, link, comment, tags]);
-      console.log(forFeedback.message);
+      retrieveLinks();
     } catch (error) {
       console.log(error);
     }
@@ -40,12 +52,14 @@ const CreateLinkForm = () => {
       >
       <div >
         <Modal.Header
-          style={{
-            backgroundColor: "black",
-          }}
-          
+          style={
+            { justifyContent:'center', 
+              backgroundColor: 'black',
+              letterSpacing: '0.2rem'
+            }
+          }
         >
-          <Modal.Title>Add New Link</Modal.Title>
+          <Modal.Title>Add New WebLink</Modal.Title>
         </Modal.Header>
         <Modal.Body
           style={{
@@ -75,10 +89,12 @@ const CreateLinkForm = () => {
                 }}
                 type="URL"
                 placeholder="https://www.example.com"
+                defaultValue="https://www."
                 onInput={(event) => {
                   setLink(event.target.value);
-                }}
-              />
+                }} 
+              /> 
+              
             </Form.Group>
             <Form.Group className="mb-3" required>
               <Form.Label>Comments</Form.Label>
@@ -123,7 +139,6 @@ const CreateLinkForm = () => {
         </Modal.Body>
         </div>
       </Modal>
-      
     </>
   );
 };

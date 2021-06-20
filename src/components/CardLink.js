@@ -1,6 +1,6 @@
-import React, {useEffect } from "react";
+import React from "react";
 import "./CardLink.css";
-import { linksWithTags, updateCardClicks } from "../api";
+import { linksWithTags, updateCardClicks, deleteLink } from "../api";
 import img from "../../src/assests/grid-globe-link.png";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
@@ -21,10 +21,17 @@ const CardLink = ({ links, setLinks, reset }) => {
     return (
       <div className="CardlinkContainer">
         <div className="CardLink" key={index}>
-          {/* <h1>Potential Card <i>image</i></h1> */}
           <div className="cardHeader">
-            <img src={img} alt="stock image" id="card-title-img" />
-            <button> <DeleteForeverIcon fontSize='large' color="red" /> </button>
+            <img src={img} alt="Globe" id="card-title-img" />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteLink(link.id);
+                handleReset();
+              }}
+            > 
+              <DeleteForeverIcon fontSize='large' color="red" /> 
+            </button>
           </div>
           <div className="infoSection">
             <p>{link.name}</p>
@@ -34,9 +41,9 @@ const CardLink = ({ links, setLinks, reset }) => {
                 href="true"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleReset();
                   updateCardClicks(link.id);
-                  window.open(link.link);
+                  handleReset();
+                  // window.open(link.link);
                 }}
               >
                 {link.link}

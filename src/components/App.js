@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Home, Title } from "../components";
+import { Title } from "../components";
 import { getLinks } from "../api";
 import CreateLinkForm from "./CreateLinkForm"; // do not delete this
 import SearchBar from "./SearchBar";
@@ -7,8 +7,6 @@ import CardLink from "./CardLink";
 import "./App.css";
 
 const App = () => {
-  const [message, setMessage] = useState("");
-  const [cardData, setCardData] = useState([]);
   const [links, setLinks] = useState([]);
   const retrieveLinks = () => {
     getLinks()
@@ -16,7 +14,7 @@ const App = () => {
         setLinks(link);
       })
       .catch((error) => {
-        // something something errors
+        console.log(error);
       });
   };
   useEffect(() => {

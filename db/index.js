@@ -1,15 +1,11 @@
 const { Client } = require("pg");
-const DB_NAME = "localhost:5432/linkerator";
-const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client({
   connectionString:
     process.env.DATABASE_URL || "postgres://localhost:5432/linkerator",
   ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : undefined,
+    process.env.NODE_ENV === "production" 
+    ? { rejectUnauthorized: false } : undefined,
 });
-// const client = new Client(DB_URL);
 
 // LINK database methods
 async function createLink({ name, link, count, comment, tags = [] }) {
@@ -83,33 +79,31 @@ async function getLinkById(id) {
   }
 }
 
-// async function deleteLink(linkId) {
-//   try {
-//     await client.query(
-//       `
-//     DELETE FROM link_tags
-//     WHERE "linkId"=$1;
-//     `,
-//       [linkId]
-//     );
+async function deleteLink(linkId) {
+  console.log("YOOO")
+  try {
+    await client.query(
+      `
+        DELETE FROM link_tags
+        WHERE "linkId"=$1;
+      `, [linkId]
+    );
 
-//     await client.query(
-//       `
-//     DELETE FROM link
-//     WHERE id=$1;
-//     `,
-//       [linkId]
-//     );
-
-//     return `Deleted Link: ${linkId}`;
-//   } catch (err) {
-//     console.error("could not delete", err);
-//     throw err;
-//   }
-// }
+    await client.query(
+      `
+        DELETE FROM link
+        WHERE id=$1;
+      `, [linkId]
+    );
+      console.log("I fired " + linkId);
+    return `Deleted Link: ${linkId}`;
+  } catch (err) {
+    console.error("Deletion Error: ", err);
+    throw err;
+  }
+}
 
 // TAG database methods
-
 async function getAllTags() {
   try {
     const { rows } = await client.query(`SELECT * FROM tags;`);
@@ -205,7 +199,6 @@ async function updateLink(linkId, fields = {}) {
 }
 
 // LINK and TAG database methods
-
 async function getLinksByTagName(tagName) {
   try {
     const { rows: tagIds } = await client.query(
@@ -283,5 +276,6 @@ module.exports = {
   addTagsToLink,
   createLinkTag,
   updateLink,
-  updateClickCount
+  updateClickCount,
+  deleteLink
 };

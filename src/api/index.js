@@ -63,11 +63,15 @@ export async function updateCardClicks(id) {
     console.log(err);
   }
 }
-// / export async function deleteLink(linkId) {
-//   try {
-//     const { data } = await axios.delete(`/api/links/${linkId.id}`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+
+export async function deleteLink(linkId) {
+  try {
+    const  data  = await axios.delete(`/api/links/${linkId}`,
+    { header: { 'Content-Type': 'application/json'},
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
