@@ -20,21 +20,9 @@ const CreateLinkForm = () => {
     e.preventDefault();
     window.location.reload();
   
-  // const retrieveLinks = () => {
-  //   getLinks()
-  //   .then((link) => {
-  //     setLink(link);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // };
-
-  // const handleReset = () => { reset(); };
-
     try {
       await createNewLinks([name, link, comment, tags]);
-      retrieveLinks();
+      // retrieveLinks();
     } catch (error) {
       console.log(error);
     }
